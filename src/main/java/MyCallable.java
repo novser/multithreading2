@@ -11,7 +11,7 @@ public class MyCallable implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        long beginTime =  System.currentTimeMillis();
+        long beginTime = System.currentTimeMillis();
         try {
             while (System.currentTimeMillis() - beginTime < timeout) {
                 Thread.sleep(2500);
