@@ -2,12 +2,18 @@ import java.util.concurrent.Callable;
 
 public class MyCallable implements Callable<Integer> {
 
-    int callCount;
+    private int callCount;
+    private int timeout;
+
+    public MyCallable(int timeout) {
+        this.timeout = timeout;
+    }
 
     @Override
     public Integer call() throws Exception {
+        long beginTime =  System.currentTimeMillis();
         try {
-            while (!Thread.currentThread().isInterrupted()) {
+            while (System.currentTimeMillis() - beginTime < timeout) {
                 Thread.sleep(2500);
                 System.out.println("Поток " + Thread.currentThread().getName() + ".Всем привет!");
                 callCount++;
